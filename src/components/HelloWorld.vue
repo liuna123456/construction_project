@@ -33,14 +33,14 @@
       <div>
         <Button type="primary" @click="open_add_modal = true">添加</Button>
         <Modal v-model="open_add_modal" title="添加数据" @on-ok="add_ok" @on-cancel="add_cancel">
-          <!-- <Input v-model="add_view_path"  clearable style="width:350px;">
+          <Input v-model="add_view_path" clearable style="width:350px;">
           <span slot="prepend">视图路径</span>
           /*elslint-disable*/
           </Input>
           <Input v-model="add_server_path" clearable style="width:350px;margin-top:20px;">
           <span slot="prepend">服务路径</span>
           /*elslint-disable*/
-          </Input> -->
+          </Input>
 
         </Modal>
         <Button @click="check_del_checked">删除选中</Button>
@@ -63,12 +63,12 @@
             <td> {{fix_id}}</td>
             <td>
               <!-- <input type="text" v-model="fix_view_path">  -->
-              <Input v-model="fix_view_path" style="width: 260px"/>
+              <Input v-model="fix_view_path" style="width: 260px" />
             </td>
             <td>
               <!-- <input type="text" v-model="fix_server_path"> -->
-              <Input v-model="fix_server_path" style="width: 260px"/>
-              </td>
+              <Input v-model="fix_server_path" style="width: 260px" />
+            </td>
           </tr>
         </tbody>
       </table>

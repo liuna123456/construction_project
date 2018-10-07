@@ -1,0 +1,66 @@
+<template>
+  <div>
+    <div>option2</div>
+    <Row>
+      <Col span="12"> 开始时间:
+      <date-picker type="datetime" v-model="startTime" placeholder="请选择开始时间" :options="startTimeOption" @on-change="onStartTimeChange"></date-picker>
+      </Col>
+      <Col span="12"> 结束时间:
+      <date-picker type="datetime" v-model="endTime" placeholder="请选择结束时间" :options="endTimeOption" @on-change="onEndTimeChange"></date-picker>
+      </Col>
+    </Row>
+
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'option2',
+  data () {
+    return {
+      startTime: '',
+      endTime: '2018-08-11 23:59:59',
+      startTimeOption: {},
+      endTimeOption: {}
+    }
+  },
+  mounted () {
+    this.startTime = '2018-08-08 00:00:00'
+    this.endTime = '2018-08-11 23:59:59'
+    this.onStartTimeChange(this.startTime)
+    this.onEndTimeChange(this.endTime)
+  },
+  methods: {
+  /**
+  * 开始时间发生变化时触发,设置结束时间不可选择的日期
+  * 结束时间应大于等于开始时间,且小于等于当前时间
+  * @param {string} startTime 格式化后的日期
+  * @param {string} type 当前的日期类型
+  */
+    onStartTimeChange (startTime, type) {
+      this.endTimeOption = {
+        disabledDate (endTime) {
+          return endTime < new Date(startTime) || endTime > Date.now()
+        }
+      }
+    },
+
+    /**
+  * 结束时间发生变化时触发,设置开始时间不可选择的日期
+  * 开始时间小于等于结束时间,且小于等于当前时间
+  * @param {string} date 格式化后的日期
+  * @param {string} type 当前的日期类型
+  */
+    onEndTimeChange (endTime, type) {
+      this.startTimeOption = {
+        disabledDate (startTime) {
+          return startTime > new Date(endTime) || startTime > Date.now()
+        }
+      }
+    }
+
+  }
+
+}
+
+</script>
