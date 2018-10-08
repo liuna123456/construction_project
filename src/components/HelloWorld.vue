@@ -33,13 +33,12 @@
       <div>
         <Button type="primary" @click="open_add_modal = true">添加</Button>
         <Modal v-model="open_add_modal" title="添加数据" @on-ok="add_ok" @on-cancel="add_cancel">
-          <Input v-model="add_view_path" clearable style="width:350px;">
-          <span slot="prepend">视图路径</span>
-          /*elslint-disable*/
-          </Input>
-          <Input v-model="add_server_path" clearable style="width:350px;margin-top:20px;">
+          <Input v-model="add_server_path" clearable style="width:350px;">
           <span slot="prepend">服务路径</span>
-          /*elslint-disable*/
+          </Input>
+
+          <Input v-model="add_view_path" clearable style="width:350px;margin-top:20px;">
+          <span slot="prepend">视图路径</span>
           </Input>
 
         </Modal>
