@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Page from '@/views/Page'
+import Login from '@/views/Login'
 import Yuxuan from '@/views/Yuxuan'
+import Layout from '@/views/Layout'
 import Item1 from '@/views/Item1'
 import Item2 from '@/views/Item2'
 import Item3 from '@/views/Item3'
@@ -15,14 +17,24 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/helloWorld',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/page',
       name: 'Page',
       component: Page
+    },
+    {
+      path: '/layout',
+      name: 'Layout',
+      component: Layout
     },
     {
       path: '/yuxuan',

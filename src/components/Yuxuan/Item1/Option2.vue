@@ -1,15 +1,19 @@
 <template>
-  <div>
-    <div>option2</div>
-    <Row>
-      <Col span="12"> 开始时间:
-      <date-picker type="datetime" v-model="startTime" placeholder="请选择开始时间" :options="startTimeOption" @on-change="onStartTimeChange"></date-picker>
-      </Col>
-      <Col span="12"> 结束时间:
-      <date-picker type="datetime" v-model="endTime" placeholder="请选择结束时间" :options="endTimeOption" @on-change="onEndTimeChange"></date-picker>
-      </Col>
-    </Row>
+  <div class="con">
+    <div class="header">header</div>
+    <div class="content">
 
+      <div>option2</div>
+      <Row>
+        <Col span="12"> 开始时间:
+        <date-picker type="datetime" v-model="startTime" placeholder="请选择开始时间" :options="startTimeOption" @on-change="onStartTimeChange"></date-picker>
+        </Col>
+        <Col span="12"> 结束时间:
+        <date-picker type="datetime" v-model="endTime" placeholder="请选择结束时间" :options="endTimeOption" @on-change="onEndTimeChange"></date-picker>
+        </Col>
+      </Row>
+    </div>
+    <div class="footer">footer</div>
   </div>
 </template>
 
@@ -64,3 +68,18 @@ export default {
 }
 
 </script>
+
+<style>
+/* .con{
+  display: flex;
+  flex-direction: column;
+} */
+.header,.footer{
+  height: 30px;
+  background: #ccc;
+}
+.content{
+  height: 100%;
+  background: pink;
+}
+</style>

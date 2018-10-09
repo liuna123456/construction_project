@@ -2,14 +2,18 @@
   <div class="hello">
     <div class="init_table">
       <Button to="/page">to_page_分页案例</Button>
+      <Button to="/layout">to_layout_页面布局</Button>
+      <Button to="/">跳转到登录页面</Button>
       <Button to="/yuxuan">to_雨萱姐_的页面</Button>
+      登录的名字:{{$route.query.user}}******
+      登录的密码:{{$route.query.password}}
       <!-- 初始化下拉选择框 -->
       <Select v-model="model_select" style="width:200px">
         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
       </Select>
       <!-- 初始化表格使用的搜索框 -->
-      <!--  <Input v-model="value_search"  @on-enter="search_data" style="width: 400px">
-       <Select v-model="select_search" slot="prepend" style="width: 120px">
+      <Input v-model="value_search" @on-enter="search_data" style="width: 400px">
+      <Select v-model="select_search" slot="prepend" style="width: 120px">
         <Option value="id">序列号</Option>
         <Option value="server_num">服务组件简称</Option>
         <Option value="server_state">服务状态</Option>
@@ -18,8 +22,7 @@
         <Option value="component_num">组件安全节点</Option>
       </Select>
       <Button slot="append" icon="ios-search"></Button>
-      /*elslint-disable*/
-      </Input> -->
+      </Input>
     </div>
     <!-- 初始化表格*****带分页功能 -->
     <Table class="init_table" border :no-filtered-data-text="kong" :data="tableData_init" :columns="tableColumns_init" stripe></Table>
@@ -44,7 +47,9 @@
         </Modal>
         <Button @click="check_del_checked">删除选中</Button>
       </div>
-      <Table @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
+      <!-- 查看模态框中的表格 -->
+      <Table @on-select-all="check_select_all" @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
+      <!-- 查看模态框中的分页 -->
       <Page :total="check_dataCount" :page-size="check_pageSize" show-elevator show-total class="check_paging" @on-change="check_changepage"></Page>
     </Modal>
     <!-- 修改模态框 -->
@@ -61,16 +66,18 @@
           <tr>
             <td> {{fix_id}}</td>
             <td>
-              <!-- <input type="text" v-model="fix_view_path">  -->
               <Input v-model="fix_view_path" style="width: 260px" />
             </td>
             <td>
-              <!-- <input type="text" v-model="fix_server_path"> -->
               <Input v-model="fix_server_path" style="width: 260px" />
             </td>
           </tr>
         </tbody>
       </table>
+    </Modal>
+    <!-- 删除一条信息的模态框 -->
+    <Modal v-model="modal_del_btn" title="删除提示框" @on-ok="ok_modal_del_btn" @on-cancel="cancel_modal_del_btn">
+      <p>您确定要删除id为{{del_one_id}}的数据吗？</p>
     </Modal>
   </div>
 </template>
@@ -81,6 +88,9 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+      // 删除一条数据的id
+      del_one_id: '',
+      modal_del_btn: false,
       // 添加模态框
       open_add_modal: false,
       // 初始化表格的搜索框
@@ -94,7 +104,6 @@ export default {
       dataCount: 0,
       // 每页显示多少条
       pageSize: 8,
-
       // 查看模态框中的分页
       check_ajaxHistoryData: [],
       // 初始化信息总条数
@@ -229,7 +238,6 @@ export default {
       ],
       // 查看模态框
       modalCheck: false,
-
       // 修改模态框
       modalFix: false,
       // 下拉选择框的数据
@@ -253,7 +261,6 @@ export default {
 
       ],
       model_select: '',
-
       // 查询详情的表格数据
       columns_table: [
         {
@@ -308,23 +315,11 @@ export default {
                   size: 'small'
                 },
                 on: {
-                  click () {
-                    alert('确定要删除id等于' + params.row.id + '的这一条信息吗？')
-                    axios.delete('http://localhost:3000/init/' + params.row.id)
-                      .then(res => {
-                        console.log(res)
-                        if (res.status === 200) {
-                          console.log('后台数据库删除成功***页面中被删除的数据还没有被移除，是个bug')
-                          // 初始化表格函数，重新渲染页面数据*****出现问题
-                          // let delIndex = this.data_table.findIndex(item => item.id === params.row.id)
-                          // if (delIndex >= 0) {
-                          //   this.data_table.splice(delIndex, 1)
-                          // }
-                        }
-                      })
-                    // alert(123)
-                    // console.log(this.data_table)//不能读取
-                    // this.data_table.splice(params.row.id, 1)
+                  click: () => {
+                    // 打开删除模态对话框
+                    this.modal_del_btn = true
+                    // 将要删除的id赋值给模态框
+                    this.del_one_id = params.row.id
                   }
                 }
               }, '删除')
@@ -338,8 +333,35 @@ export default {
   created () {
     this.initData()
     this.initManage()
+    console.log(
+      this.$route.query.Id,
+      this.$route.query.user,
+      this.$route.query.password
+    )
   },
   methods: {
+    // 删除选中当前页所有数据
+    check_select_all (selection) {
+      selection.map((item, index) => {
+        this.check_ids.push(item.id)
+      })
+    },
+    // 删除一行的数据的模态框
+    ok_modal_del_btn () {
+      axios.delete('http://localhost:3000/init/' + this.del_one_id)
+        .then(res => {
+          if (res.status === 200) {
+            let delIndex = this.data_table.findIndex(item => item.id === this.del_one_id)
+            if (delIndex >= 0) {
+              this.data_table.splice(delIndex, 1)
+            }
+          }
+        })
+      this.$Message.info('成功为您删除id为' + this.del_one_id + '的数据')
+    },
+    cancel_modal_del_btn () {
+      this.$Message.info('您已取消删除')
+    },
     // 查看数据中的添加***操作
     add_ok () {
       // 当添加框中的内容为空时，阻止发送请求
@@ -349,7 +371,6 @@ export default {
       }
       let newData = {view_path: this.add_view_path, server_path: this.add_server_path}
       axios.post('http://localhost:3000/init', newData).then((res) => {
-        console.log(res)
         // 清空输入框中的内容
         this.add_view_path = this.add_server_path = ''
         // 重新更新页面数据
@@ -361,24 +382,17 @@ export default {
     add_cancel () {
       this.$Message.info('取消添加数据')
     },
-    // 初始化页面的搜索框***无效
+    // 初始化页面的搜索框***
     search_data () {
-      // alert(123)
-      console.log(this.value_search, this.select_search)
       // 发送请求，返回对应数据到表格中
-      // axios.get('http://localhost:3000/manage?' + name + '=' + this.value_search)
-      // axios.get('http://localhost:3000/manage?id=5')
-      // axios.get('http://localhost:3000/manage?component_type=P4')
       axios.get('http://localhost:3000/manage?' + this.select_search + '=' + this.value_search)
         .then(res => {
-          // console.log(res.data)
           this.tableData_init = res.data
         })
     },
     // 详情中的表格数据
     async initData () {
       const {data} = await axios.get('http://localhost:3000/init')
-      // console.log(data)
       this.data_table = data
       // 分页中***保存取到的所有数据
       this.check_ajaxHistoryData = this.data_table
@@ -394,14 +408,24 @@ export default {
     handleSelectAll (status) {
       this.$refs.selection.selectAll(status)
     },
+    // 复选框中选中的数据，获取id值
     check_select_one (selection, row) {
-      // console.log('点击选复选框时触发', selection, row, row.id)
-      this.check_ids.push(row.id)
-      console.log(this.check_ids)
+      this.check_ids.push(row.id)// 将所有选中的id加入进一个数组中
     },
     // 删除选中
     check_del_checked () {
-      this.$Message.info('请添加您要删除的id')
+      //  每次删除一个，循环删除
+      this.check_ids.map((item, index) => {
+        // 删除数据库的数据
+        axios.delete('http://localhost:3000/init/' + item).then((res) => {
+          // 删除页面中的数据
+          let delIndex = this.data_table.findIndex(itemaa => itemaa.id === item)
+          if (delIndex >= 0) {
+            this.data_table.splice(delIndex, 1)
+          }
+        })
+      })
+      this.$Message.info('您将要删除id为' + this.string_ids + '的数据')
     },
     // 修改模态框中的确定与取消事件
     fix_ok () {
@@ -423,7 +447,6 @@ export default {
     },
     async initManage () {
       const {data} = await axios.get('http://localhost:3000/manage')
-      console.log(data)
       this.tableData_init = data
       // 分页中***保存取到的所有数据
       this.ajaxHistoryData = this.tableData_init
@@ -449,7 +472,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style  >
  .paging{
       float:right;
@@ -465,8 +487,8 @@ export default {
 }
 .check_modal .ivu-modal{
     width: 940px !important;
-  }
-  .check_modal .ivu-modal-footer{
-   display: none;
-  }
+}
+.check_modal .ivu-modal-footer{
+  display: none;
+}
 </style>

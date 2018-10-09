@@ -32,7 +32,7 @@
           <BreadcrumbItem>Home</BreadcrumbItem>
           <BreadcrumbItem>Components</BreadcrumbItem>
           <BreadcrumbItem>Layout</BreadcrumbItem>
-          <BreadcrumbItem to="/">返回首页</BreadcrumbItem>
+          <BreadcrumbItem to="/helloWorld">返回表格crud页面</BreadcrumbItem>
         </Breadcrumb>
         <Content :style="{padding: '24px 0', minHeight: '480px', background: '#fff'}">
           <Layout>
