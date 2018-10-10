@@ -39,12 +39,22 @@ export default {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success('Success!')
-          this.$router.push({ path: 'helloWorld', query: { Id: 123, user: this.formInline.user, password: this.formInline.password } })
+          // this.$router.push({ path: 'helloWorld', query: { Id: 123, user: this.formInline.user, password: this.formInline.password } })
+          this.$router.push({ path: 'helloWorld' })
+          // 将登录名字和密码保存到localStorage
+          let login = {name: this.formInline.user, password: this.formInline.password}
+          window.localStorage.setItem('login', JSON.stringify(login))
         } else {
           this.$Message.error('Fail!')
         }
       })
     }
+  },
+  created () {
+
+  },
+  mounted () {
+
   }
 }
 </script>

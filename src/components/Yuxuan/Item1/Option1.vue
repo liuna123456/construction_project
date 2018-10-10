@@ -6,9 +6,9 @@
       <Button type="success" size="large" class="bth" @click="determine">确定</Button>
     </blockquote>
     <div style="overflow: hidden">
-      <Table border :loading="loading" :columns="columns" :data="data" @on-select="selectItem" @on-select-cancel="cancelItem" @on-select-all="selectItemAll" @on-selection-change="selectChange"></Table>
+      <Table border :columns="columns" :data="data" @on-select="selectItem" @on-select-cancel="cancelItem" @on-select-all="selectItemAll" @on-selection-change="selectChange"></Table>
       <div style="float: right;margin:1% 0">
-        <Page :total="total" show-total @on-change="changePage"></Page>
+        <Page :total="11" show-total @on-change="changePage"></Page>
       </div>
     </div>
     <del-checked></del-checked>

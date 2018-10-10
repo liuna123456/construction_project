@@ -84,6 +84,12 @@ export default {
     return {
       login_name: '登录名字'
     }
+  },
+  created () {
+    // 获取localstorage中的名字和密码
+    let getLogin = JSON.parse(localStorage.getItem('login'))
+    this.login_name = getLogin.name
+    // this.password = getLogin.password
   }
 }
 </script>

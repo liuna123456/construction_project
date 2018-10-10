@@ -905,54 +905,19 @@
   ],
   "init": [
     {
-      "id": 41,
-      "view_path": "/views/A05814583/01",
-      "server_path": "/services/A0581/A05814117/07"
-    },
-    {
-      "id": 42,
-      "view_path": "/views/A05814907/01",
-      "server_path": "/services/A0581/A05814193/04"
-    },
-    {
-      "id": 43,
-      "view_path": "/views/A05814262/01",
-      "server_path": "/services/A0581/A05814131/05"
-    },
-    {
-      "id": 44,
-      "view_path": "/views/A05814196/01",
-      "server_path": "/services/A0581/A05814168/09"
-    },
-    {
-      "id": 45,
-      "view_path": "/views/A05814511/01",
-      "server_path": "/services/A0581/A05814156/07"
-    },
-    {
-      "id": 46,
-      "view_path": "/views/A05814461/01",
-      "server_path": "/services/A0581/A05814179/08"
-    },
-    {
       "id": 50,
       "view_path": "/views/A05814620/01",
       "server_path": "/services/A0581/A05814132/07"
     },
     {
       "id": 51,
-      "view_path": "请勿如果把玩 ",
-      "server_path": "请污染拜托你"
+      "view_path": "请勿如果把玩 非常光明的车公庙， ",
+      "server_path": "请污染拜托你采购部门的成功"
     },
     {
       "id": 52,
       "view_path": "问题呢请问日本",
       "server_path": "问题你为日呢无人二"
-    },
-    {
-      "view_path": "侮辱妇女微软",
-      "server_path": "儿童而 ",
-      "id": 63
     },
     {
       "view_path": "我热播v ",

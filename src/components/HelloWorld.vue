@@ -5,8 +5,8 @@
       <Button to="/layout">to_layout_页面布局</Button>
       <Button to="/">跳转到登录页面</Button>
       <Button to="/yuxuan">to_雨萱姐_的页面</Button>
-      登录的名字:{{$route.query.user}}******
-      登录的密码:{{$route.query.password}}
+      登录的名字:{{name}}******
+      登录的密码:{{password}}
       <!-- 初始化下拉选择框 -->
       <Select v-model="model_select" style="width:200px">
         <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
@@ -88,6 +88,9 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+      // 接收登录名字和密码
+      name: '',
+      password: '',
       // 删除一条数据的id
       del_one_id: '',
       modal_del_btn: false,
@@ -331,13 +334,18 @@ export default {
     }
   },
   created () {
+    // 获取localstorage中的名字和密码
+    let getLogin = JSON.parse(localStorage.getItem('login'))
+    this.name = getLogin.name
+    this.password = getLogin.password
+
     this.initData()
     this.initManage()
-    console.log(
-      this.$route.query.Id,
-      this.$route.query.user,
-      this.$route.query.password
-    )
+    // console.log(
+    //   this.$route.query.Id,
+    //   this.$route.query.user,
+    //   this.$route.query.password
+    // )
   },
   methods: {
     // 删除选中当前页所有数据
@@ -468,6 +476,13 @@ export default {
       let _end = index * this.check_pageSize
       this.data_table = this.check_ajaxHistoryData.slice(_start, _end)
     }
+  },
+  mounted () {
+    // let getLogin = JSON.parse(localStorage.getItem('login'))
+
+    // // 测试
+
+    // console.log('asdfasdf', getLogin.name, getLogin.password)// 打印出陆游
   }
 }
 </script>
