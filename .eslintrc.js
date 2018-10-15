@@ -24,7 +24,8 @@ module.exports = {
 	rules: {
 		// allow async-await
 		'generator-star-spacing': 'off',
-		'no-labels': 2, //禁止标签声明
+    'no-labels': 2, //禁止标签声明
+    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
 		// allow debugger during development
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
 		// 'vue/html-self-closing': 'off' //3

@@ -1,0 +1,339 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>itcastmark:E:\vue_3_container\test2\myproject\vue入门教程</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="-">需要提前了解的知识点</h1>
+<ol>
+<li><p><a href="http://www.cnblogs.com/kelsen/p/4947859.html">npm 入门</a></p>
+<ol>
+<li><a href="http://www.nodeclass.com/articles/810142">npm 提高</a>
+```
+需要了解的知识点
+package.json 文件相关配置选项
+npm 本地安装、全局安装、本地开发安装等区别及相关命令
+npm script 脚步的基本编写能力</li>
+</ol>
+<pre><code>3. [webpack配置，官方文档**查看指南部分](https://webpack.js.org/)
+</code></pre><p>webpack 的基本配置
+了解 webpack 常用的 loader： less-loader、sass-loader、 vue-loader、style-loader、css-loader、eslint-loader、babel-loader 等
+熟悉 Webpack 的 webpack-dev-server 的基本配置和使用，会配置热更新</p>
+<pre><code>4. [阮一峰es6语法大全](http://es6.ruanyifeng.com/)
+</code></pre><p>需要学习的知识点
+es6 的模块机制
+各种最新语法糖，简写、geter、setter、箭头函数
+类、继承的心机制 ...
+```</p>
+<h1 id="vue-vue-cli-">Vue 脚手架工具：vue-cli构建实战项目</h1>
+</li>
+</ol>
+<ol>
+<li>vue-cli安装
+```<h1 id="-vue-cli-nodejs-">安装vue-cli。  安装之前首先确保你已经安装好了nodejs 而且打开命令行</h1>
+$ npm install -g vue-cli</li>
+</ol>
+<h1 id="-">校验一下是否安装成功</h1>
+<p>$ vue -V</p>
+<p><em>*</em>注意版本问题</p>
+<pre><code>2. 使用vue-cli初始化项目
+</code></pre><p>$ vue init <template-name> <project-name></p>
+<pre><code>3.  安装和开发控制台的命令：
+</code></pre><h1 id="-">如果已经安装，请省略</h1>
+<p>$ npm install -g vue-cli</p>
+<h1 id="-webpack-vue-my-project-">初始化一个webpack全功能包的vue项目，请您把my-project换成你自己的项目名。</h1>
+<p>$ vue init webpack my-project</p>
+<h1 id="-">用命令行进入当前项目目录</h1>
+<p>$ cd my-project</p>
+<h1 id="npm-">npm安装所有的依赖的包</h1>
+<p>$ npm install</p>
+<h1 id="-">运行测试的首页</h1>
+<p>$ npm run dev</p>
+<pre><code>
+### 综合实例开发记录
+</code></pre><p>$ vue init webpack ttl                        # =&gt; 安装webpack模板的项目 ttl（项目名可以随便取）</p>
+<p>  A newer version of vue-cli is available.</p>
+<p>  latest:    2.6.0
+  installed: 2.5.1</p>
+<p>  This will install Vue 2.x version of template.</p>
+<p>  For Vue 1.x use: vue init webpack#1.0 ttl</p>
+<p>? Project name mydemovue                        # =&gt; 项目名称
+? Project description A Vue.js project          # =&gt; 项目描述
+? Author malun <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#x31;&#x35;&#55;&#x33;&#x35;&#x31;&#x31;&#x34;&#52;&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#x31;&#x35;&#55;&#x33;&#x35;&#x31;&#x31;&#x34;&#52;&#49;&#64;&#113;&#x71;&#46;&#x63;&#111;&#109;</a>               # =&gt; 作者
+? Vue build standalone                          # =&gt; 是否支持单文件组件
+? Use ESLint to lint your code? Yes             # =&gt; 是否支持ESLint代码校验
+? Pick an ESLint preset Standard                # =&gt; 校验的标准是什么？
+? Setup unit tests with Karma + Mocha? Yes      # =&gt; 是否使用单元测试
+? Setup e2e tests with Nightwatch? Yes          # =&gt; 是否使用e2e测试</p>
+<p>   vue-cli · Generated &quot;ttl&quot;.</p>
+<p>   To get started:</p>
+<pre><code> cd ttl
+ npm install
+ npm run dev
+</code></pre><p>   Documentation can be found at <a href="https://vuejs-templates.github.io/webpack">https://vuejs-templates.github.io/webpack</a></p>
+<pre><code>
++  通过上面一系列的命令后，我们就会创建一个 webpack 配置好的项目包。目录结构如下：
+</code></pre><p>ttl
+|--.babelrc           #=&gt; babel的配置文件，主要用于转换es6等最新的js语法。
+|--.editorconfig      #=&gt; 编辑器配置
+|--.eslintignore      #=&gt; eslint的忽略校验的配置文件
+|--.eslintrc.js       #=&gt; eslint的配置校验js是否规范的配置文件
+|--.gitignore         #=&gt; 设置git忽略的管理的文件
+|--README.md          #=&gt; readme说明文件
+|--build/             #=&gt; 自动构建存放的文件地方
+|--config/            #=&gt; 当前开发、测试等配置的文件，需要懂点nodejs了啊。
+|--index.html         #=&gt; 项目的主入口的模板
+|--package.json       #=&gt; npm的配置文件
+|--src/               #=&gt; 源码目录
+|--static/            #=&gt; 静态资源存放的目录
+|--test/              #=&gt; 测试相关目录</p>
+<pre><code>
+1. 初始化依赖包
+</code></pre><p>$ cd ttl              #=&gt; 进入上面创建好的项目目录
+$ npm install         #=&gt; 安装所有的依赖包。  安装过程可能非常长，网络也可能有问题，请耐心等待。</p>
+<h1 id="-http-localhost-8080-ok-">安装完成后，可以直接运行测试,如果自动打开浏览器，并跳转到<a href="http://localhost:8080/">http://localhost:8080/</a> 说明一切都ok了。</h1>
+<p>$ npm run dev</p>
+<pre><code>
+2. 安装vue-router组件
+</code></pre><p>$ npm i -S vue-router</p>
+<pre><code>3. 到项目的 /src/components/ 目录下创建三个组件文件。
++  首页组件
+</code></pre><template>
+  <div class="home">
+    <h3>{{ msg }}</h3>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'home',     // 组件可以有自己的名字。
+  data () {         // 组件的data必须是函数
+    return {
+      msg: '这里是Home视图'
+    }
+  }
+}
+</script>
+
+<p><style scoped>
+h3 {
+  background-color: #82c;
+}
+</style></p>
+<pre><code>+  用户首页组件
+</code></pre><template>
+  <div>
+    <h3>{{ msg }}</h3>
+  </div>
+</template>
+
+<script>
+export default {    // es6的模块导出定义语法，此模块导出默认的对象
+  name: 'user',     // 组件可以有自己的名字。
+  data () {         // 组件的data必须是函数
+    return {
+      msg: '这里是User视图'
+    }
+  }
+}
+</script>
+
+<p><style scoped>
+h3 {
+  background-color: red;
+}
+</style></p>
+<pre><code>+  产品组件
+</code></pre><template>
+  <div class="product">
+    <h3>{{ msg }}</h3>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'product',     // 组件可以有自己的名字。
+  data () {         // 组件的data必须是函数
+    return {
+      msg: '这里是Home视图'
+    }
+  }
+}
+</script>
+
+<p><style scoped>
+h3 {
+  background-color: green;
+}
+</style></p>
+<pre><code>4.  项目的目录结构为：
+</code></pre><p>ttl
+|-- src
+|--|-- Hello.vue
+|--|-- Home.vue
+|--|-- Product.vue
+|--|-- User.vue</p>
+<pre><code>5.  创建 router 对象及配置路由
++   在src目录下创建approuter.js文件。 然后添加如下代码：
+</code></pre><p>import VueRouter from &#39;vue-router&#39;; // 导入路由模块
+import Home from &#39;./components/Home.vue&#39;; // 导入Home组件
+import User from &#39;./components/User.vue&#39;;
+import Product from &#39;./components/Product.vue&#39;;</p>
+<p>export default new VueRouter({
+  // 定义路由规则对象
+  routes: [
+    { path: &#39;/home&#39;, component: Home },
+    { path: &#39;/user/:id&#39;, component: User },
+    { path: &#39;/product/:id&#39;, component: Product }
+  ]
+});</p>
+<pre><code>6.  修改 main.js 文件 找到src/目录下的 main.js 文件， 共修改 4 处，添加路由引用、添加路由规则对象导入、启用路由、将路由键入到 Vue 中。
+修改此文件为：
+</code></pre><p>// The Vue build version to load with the <code>import</code> command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import Vue from &#39;vue&#39;;
+import App from &#39;./App&#39;;
+import VueRouter from &#39;vue-router&#39;; // +++1、导入路由组件
+import router from &#39;./approuter&#39;; // +++2、导入我们自己写的路由配置文件</p>
+<p>// +++ 3、使用路由组件
+Vue.use(VueRouter);</p>
+<p>/<em> eslint-disable no-new </em>/
+new Vue({
+  el: &#39;#app&#39;,
+  template: &#39;<App/>&#39;,
+  components: { App },
+  router: router // +++4、添加路由对象
+});</p>
+<pre><code>7.  在 app.vue 中添加路由导航
+</code></pre><template>
+  <div id="app">
+    <nav class="top-menu">
+      <ul >
+        <li v-for="item in menuList">
+          <router-link :to="item.url">{{ item.name }}</router-link>
+        </li>
+      </ul>
+    </nav>
+    <hr>
+    <div>
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app',
+  data: function () {
+    return {
+      menuList: [
+        { name: '首页', url: '/home' },
+        { name: '用户', url: '/user/19' },
+        { name: '产品', url: '/product/20' }
+      ]
+    }
+  }
+}
+</script>
+
+<p><style></p>
+<p>#app {</p>
+<p>}
+.top-menu ul, .top-menu li {
+  list-style: none;
+}
+.top-menu {
+  overflow: hidden;
+}
+.top-menu li {
+  float: left;
+  width: 100px;
+}
+</style>
+```</p>
+<ol>
+<li><a href="https://cn.vuejs.org/v2/guide/">vue的各种指令官网最详细</a></li>
+</ol>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

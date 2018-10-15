@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Page from '@/views/Page'
 import Login from '@/views/Login'
+import Test from '@/views/Test'
 import Yuxuan from '@/views/Yuxuan'
 import Layout from '@/views/Layout'
 import Item1 from '@/views/Item1'
@@ -12,6 +13,7 @@ import Item4 from '@/views/Item4'
 import Option1 from '@/components/Yuxuan/Item1/Option1'
 import Option2 from '@/components/Yuxuan/Item1/Option2'
 import Option3 from '@/components/Yuxuan/Item1/Option3'
+import Option4 from '@/components/Yuxuan/Item1/Option4'
 Vue.use(Router)
 
 export default new Router({
@@ -37,6 +39,11 @@ export default new Router({
       component: Layout
     },
     {
+      path: '/test',
+      name: 'Test',
+      component: Test
+    },
+    {
       path: '/yuxuan',
       name: 'Yuxuan',
       component: Yuxuan,
@@ -56,8 +63,14 @@ export default new Router({
           path: 'item1/option3',
           name: 'Option3',
           component: Option3
+        },
+        {
+          path: 'item1/option4',
+          name: 'Option4',
+          component: Option4
         }
-      ]
+      ],
+      
     },
     {
       path: '/yuxuan/item1',

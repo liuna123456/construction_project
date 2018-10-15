@@ -8,11 +8,12 @@
             <div style="color:#fff">{{login_name}}</div>
           </div>
           <div class="layout-nav">
-            <menu-item name="1" to="/yuxuan/item1">
-              <Icon type="ios-navigate"></Icon>
-              Item 1
+
+            <menu-item :name="item.name" :to="item.href" v-for="(item,index) in itemList" :key="index">
+              <Icon :type="item.icon"></Icon>
+              {{item.title}}
             </menu-item>
-            <menu-item name="2" to="/yuxuan/item2">
+            <!-- <menu-item name="2" to="/yuxuan/item2">
               <Icon type="ios-keypad"></Icon>
               Item 2
             </menu-item>
@@ -23,7 +24,7 @@
             <menu-item name="4" to="/yuxuan/item4">
               <Icon type="ios-paper"></Icon>
               Item 4
-            </menu-item>
+            </menu-item> -->
           </div>
         </Menu>
       </Header>
@@ -37,15 +38,16 @@
         <Content :style="{padding: '24px 0', minHeight: '480px', background: '#fff'}">
           <Layout>
             <Sider hide-trigger :style="{background: '#fff'}">
-              <Menu active-name="1-1" theme="light" width="auto" :open-names="['1']">
+              <Menu :active-name="kk" theme="light" width="auto" :open-names="['1']">
                 <Submenu name="1">
                   <template slot="title">
                     <Icon type="ios-navigate"></Icon>
                     Item 1
                   </template>
-                  <menu-item name="1-1" to="/yuxuan/item1/option1">Option 1</menu-item>
-                  <menu-item name="1-2" to="/yuxuan/item1/option2">Option 2</menu-item>
-                  <menu-item name="1-3" to="/yuxuan/item1/option3">Option 3</menu-item>
+                  <menu-item name="11" to="/yuxuan/item1/option1">Option 1</menu-item>
+                  <menu-item name="12" to="/yuxuan/item1/option2">Option 2</menu-item>
+                  <menu-item name="13" to="/yuxuan/item1/option3">Option 3</menu-item>
+                   <menu-item name="14" to="/yuxuan/item1/option4">Option 4</menu-item>
                 </Submenu>
                 <Submenu name="2">
                   <template slot="title">
@@ -82,7 +84,25 @@ export default {
   name: 'Yuxuan',
   data () {
     return {
-      login_name: '登录名字'
+      kk: '12',
+      login_name: '登录名字',
+      itemList: [
+        {name: '1', href: '/yuxuan/item1', icon: 'ios-navigate', title: 'Item 1'},
+        {name: '2', href: '/yuxuan/item2', icon: 'ios-keypad', title: 'Item 2'},
+        {name: '3', href: '/yuxuan/item3', icon: 'ios-analytics', title: 'Item 3'},
+        {name: '4', href: '/yuxuan/item4', icon: 'ios-paper', title: 'Item 4'}
+      ],
+      menuitemList: [
+        {name: '11', href: '/yuxuan/item1/option1', icon: 'ios-navigate', title: 'Item 1'},
+        {name: '12', href: '/yuxuan/item2/option2', icon: 'ios-keypad', title: 'Item 2'},
+        {name: '13', href: '/yuxuan/item3/option3', icon: 'ios-analytics', title: 'Item 3'}
+        // {name: '14', href: '/yuxuan/item4/option4', icon: 'ios-paper', title: 'Item 4'}
+      ],
+      mentlist: [
+        {
+
+        }
+      ]
     }
   },
   created () {
@@ -90,12 +110,26 @@ export default {
     let getLogin = JSON.parse(localStorage.getItem('login'))
     this.login_name = getLogin.name
     // this.password = getLogin.password
+  },
+  mounted () {
+    let aa = this.$route.path
+    // console.log('dsafg', this.$route.path)
+    console.log(aa)
   }
+  // watch: {
+  //   '$route': () => {
+  //     console.log('dsafg', this.$route.path)
+  //   }
+  // }
 }
 </script>
 
 <style scoped>
  /* 去掉默认样式 */
+
+.ivu-menu {
+  height: 100%;
+}
 .ivu-table-overflowX{
     overflow-x: hidden ;
   }

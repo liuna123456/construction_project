@@ -5,6 +5,7 @@
       <Button to="/layout">to_layout_页面布局</Button>
       <Button to="/">跳转到登录页面</Button>
       <Button to="/yuxuan">to_雨萱姐_的页面</Button>
+      <Button to="/test">to_测试_的页面</Button>
       登录的名字:{{name}}******
       登录的密码:{{password}}
       <!-- 初始化下拉选择框 -->
@@ -48,7 +49,7 @@
         <Button @click="check_del_checked">删除选中</Button>
       </div>
       <!-- 查看模态框中的表格 -->
-      <Table @on-select-all="check_select_all" @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
+      <Table draggable @on-select-all="check_select_all" @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
       <!-- 查看模态框中的分页 -->
       <Page :total="check_dataCount" :page-size="check_pageSize" show-elevator show-total class="check_paging" @on-change="check_changepage"></Page>
     </Modal>
@@ -89,8 +90,8 @@ export default {
   data () {
     return {
       // 接收登录名字和密码
-      name: '',
-      password: '',
+      name: '登录默认名字',
+      password: '123456',
       // 删除一条数据的id
       del_one_id: '',
       modal_del_btn: false,
@@ -477,13 +478,7 @@ export default {
       this.data_table = this.check_ajaxHistoryData.slice(_start, _end)
     }
   },
-  mounted () {
-    // let getLogin = JSON.parse(localStorage.getItem('login'))
-
-    // // 测试
-
-    // console.log('asdfasdf', getLogin.name, getLogin.password)// 打印出陆游
-  }
+  mounted () {}
 }
 </script>
 

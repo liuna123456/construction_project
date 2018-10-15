@@ -905,46 +905,6 @@
   ],
   "init": [
     {
-      "id": 50,
-      "view_path": "/views/A05814620/01",
-      "server_path": "/services/A0581/A05814132/07"
-    },
-    {
-      "id": 51,
-      "view_path": "请勿如果把玩 非常光明的车公庙， ",
-      "server_path": "请污染拜托你采购部门的成功"
-    },
-    {
-      "id": 52,
-      "view_path": "问题呢请问日本",
-      "server_path": "问题你为日呢无人二"
-    },
-    {
-      "view_path": "我热播v ",
-      "server_path": "二万人 ",
-      "id": 64
-    },
-    {
-      "view_path": "微博v五千二百",
-      "server_path": "我热播微软 ",
-      "id": 65
-    },
-    {
-      "view_path": "为播微软",
-      "server_path": "我亲热为 ",
-      "id": 67
-    },
-    {
-      "view_path": "权威不畏强暴我去饿吧",
-      "server_path": "企鹅 碑文 ",
-      "id": 68
-    },
-    {
-      "view_path": "为日本人",
-      "server_path": "五热比我热播 ",
-      "id": 69
-    },
-    {
       "view_path": "去问 ",
       "server_path": "我去饿的我",
       "id": 70
@@ -953,6 +913,11 @@
       "view_path": "土壤干旱如果和",
       "server_path": "如果内容提供",
       "id": 71
+    },
+    {
+      "view_path": "输入法NSF你的身份呢",
+      "server_path": "s'w'r'n's'w'r'n'f",
+      "id": 72
     }
   ],
   "law": [
