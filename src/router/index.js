@@ -5,15 +5,19 @@ import Page from '@/views/Page'
 import Login from '@/views/Login'
 import Test from '@/views/Test'
 import Yuxuan from '@/views/Yuxuan'
+import SysCom from '@/components/liuna/sys_com.vue'
 import Layout from '@/views/Layout'
 import Item1 from '@/views/Item1'
 import Item2 from '@/views/Item2'
 import Item3 from '@/views/Item3'
 import Item4 from '@/views/Item4'
+import exportExcel from '@/views/excel/export-excel'
+import uploadExcel from '@/views/excel/upload-excel'
 import Option1 from '@/components/Yuxuan/Item1/Option1'
 import Option2 from '@/components/Yuxuan/Item1/Option2'
 import Option3 from '@/components/Yuxuan/Item1/Option3'
 import Option4 from '@/components/Yuxuan/Item1/Option4'
+import excel from '@/components/Yuxuan/Item1/excel'
 Vue.use(Router)
 
 export default new Router({
@@ -24,6 +28,11 @@ export default new Router({
       component: HelloWorld
     },
     {
+      path: '/sys_com',
+      name: 'sys_com',
+      component: SysCom
+    },
+    {
       path: '/',
       name: 'Login',
       component: Login
@@ -32,6 +41,16 @@ export default new Router({
       path: '/page',
       name: 'Page',
       component: Page
+    },
+    {
+      path: '/export_excel',
+      name: 'export_excel',
+      component: exportExcel
+    },
+    {
+      path: '/upload_excel',
+      name: 'upload_excel',
+      component: uploadExcel
     },
     {
       path: '/layout',
@@ -68,9 +87,13 @@ export default new Router({
           path: 'item1/option4',
           name: 'Option4',
           component: Option4
+        },
+        {
+          path: 'item1/excel',
+          name: 'excel',
+          component: excel
         }
-      ],
-      
+      ]
     },
     {
       path: '/yuxuan/item1',

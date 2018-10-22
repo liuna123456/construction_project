@@ -2,6 +2,7 @@
   <div class="hello">
     <div class="init_table">
       <Button to="/page">to_page_分页案例</Button>
+      <Button to="/sys_com">刘娜_sys_com</Button>
       <Button to="/layout">to_layout_页面布局</Button>
       <Button to="/">跳转到登录页面</Button>
       <Button to="/yuxuan">to_雨萱姐_的页面</Button>
@@ -36,7 +37,7 @@
     <Modal class="check_modal" v-model="modalCheck" title="查看数据模态框">
       <div>
         <Button type="primary" @click="open_add_modal = true">添加</Button>
-        <Modal v-model="open_add_modal" title="添加数据" @on-ok="add_ok" @on-cancel="add_cancel">
+        <Modal draggable v-model="open_add_modal" title="添加数据" @on-ok="add_ok" @on-cancel="add_cancel">
           <Input v-model="add_server_path" clearable style="width:350px;">
           <span slot="prepend">服务路径</span>
           </Input>
@@ -49,7 +50,7 @@
         <Button @click="check_del_checked">删除选中</Button>
       </div>
       <!-- 查看模态框中的表格 -->
-      <Table draggable @on-select-all="check_select_all" @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
+      <Table @on-select-all="check_select_all" @on-select="check_select_one" ref="selection" class="init_table" border :no-filtered-data-text="kong" :columns="columns_table" :data="data_table"></Table>
       <!-- 查看模态框中的分页 -->
       <Page :total="check_dataCount" :page-size="check_pageSize" show-elevator show-total class="check_paging" @on-change="check_changepage"></Page>
     </Modal>
@@ -77,7 +78,7 @@
       </table>
     </Modal>
     <!-- 删除一条信息的模态框 -->
-    <Modal v-model="modal_del_btn" title="删除提示框" @on-ok="ok_modal_del_btn" @on-cancel="cancel_modal_del_btn">
+    <Modal draggable v-model="modal_del_btn" title="删除提示框" @on-ok="ok_modal_del_btn" @on-cancel="cancel_modal_del_btn">
       <p>您确定要删除id为{{del_one_id}}的数据吗？</p>
     </Modal>
   </div>

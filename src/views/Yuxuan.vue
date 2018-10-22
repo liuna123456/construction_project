@@ -47,7 +47,8 @@
                   <menu-item name="11" to="/yuxuan/item1/option1">Option 1</menu-item>
                   <menu-item name="12" to="/yuxuan/item1/option2">Option 2</menu-item>
                   <menu-item name="13" to="/yuxuan/item1/option3">Option 3</menu-item>
-                   <menu-item name="14" to="/yuxuan/item1/option4">Option 4</menu-item>
+                  <menu-item name="14" to="/yuxuan/item1/option4">Option 4</menu-item>
+                  <menu-item name="15" to="/yuxuan/item1/excel">excel</menu-item>
                 </Submenu>
                 <Submenu name="2">
                   <template slot="title">
@@ -87,8 +88,8 @@ export default {
       kk: '12',
       login_name: '登录名字',
       itemList: [
-        {name: '1', href: '/yuxuan/item1', icon: 'ios-navigate', title: 'Item 1'},
-        {name: '2', href: '/yuxuan/item2', icon: 'ios-keypad', title: 'Item 2'},
+        {name: '1', href: '/export_excel', icon: 'ios-navigate', title: 'export_excel'},
+        {name: '2', href: '/upload_excel', icon: 'ios-keypad', title: 'upload_excel'},
         {name: '3', href: '/yuxuan/item3', icon: 'ios-analytics', title: 'Item 3'},
         {name: '4', href: '/yuxuan/item4', icon: 'ios-paper', title: 'Item 4'}
       ],

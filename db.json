@@ -905,9 +905,9 @@
   ],
   "init": [
     {
-      "view_path": "去问 ",
-      "server_path": "我去饿的我",
-      "id": 70
+      "id": 70,
+      "view_path": "去问 啊的外表亲爱的吧全部份的人",
+      "server_path": "我去饿的我爱情的v 方便"
     },
     {
       "view_path": "土壤干旱如果和",
@@ -918,6 +918,11 @@
       "view_path": "输入法NSF你的身份呢",
       "server_path": "s'w'r'n's'w'r'n'f",
       "id": 72
+    },
+    {
+      "view_path": "十五分五十分 ",
+      "server_path": "是否是否无法是",
+      "id": 73
     }
   ],
   "law": [
