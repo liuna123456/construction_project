@@ -10,17 +10,39 @@
     登录的名字:{{name}}******
     登录的密码:{{password}}
     <div style="margin:10px;"></div>
-    <Table class="sys_com_table" :columns="sys_com_columns" :data="sys_com_data"></Table>
+    <Table @on-expand="clickExpandHandle" class="sys_com_table" :columns="sys_com_columns" :data="sys_com_data"></Table>
+
+    <!-- 表格中的输入框获得焦点时，弹出模态框 -->
+    <Button type="primary" @click="modal_input = true">显示弹出层</Button>
+    <Modal class="compontent_modal" v-model="modal_input" title="系统名字为****所对应的选择组件类型" @on-ok="ok_modal_input" @on-cancel="cancel_modal_input">
+      <Transfer :not-found-text="'你所查询的id值不存在'" :data="transform_origin_data" :target-keys="transform_checked_data" :list-style="listStyle" :render-format="render_box" :operations="['To left','To right']" filterable @on-change="handleChange3">
+        <div :style="{float: 'right', margin: '5px'}">
+          <Button type="primary" size="small" @click="reloadMockData">重新加载数据</Button>
+        </div>
+      </Transfer>
+    </Modal>
+
   </div>
 </template>
 
 <script>
 import expandRow from './table_expand.vue'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   components: { expandRow },
   data () {
     return {
+      // 弹出层的穿梭框
+      listStyle: {
+        width: '420px',
+        height: '400px'
+      },
+
+      // 表格中的input对应的弹出层
+      modal_input: false,
+      // 登录名字
+      name: '登录名字',
+      password: '56987',
       sys_com_columns: [
         {
           type: 'expand',
@@ -34,94 +56,39 @@ export default {
           }
         },
         {
+          title: '编号',
+          key: 'id'
+        },
+        {
+          title: '组件名字',
+          key: 'compname'
+        },
+        {
+          title: '应用编号',
+          key: 'appId'
+        },
+        {
           title: '系统名字',
-          key: 'name'
+          key: 'cname'
+        },
+        {
+          title: '英文名字',
+          key: 'ename'
         },
         {
           title: '组件名称',
           key: 'age',
           render: (h, params) => {
-            return h('Dropdown', {
-              style: {
-                marginLeft: '5px'
+            return h('Input', {
+              props: {
+                row: params.row
               },
               on: {
-                'on-click': (value) => {
-                  console.log(value)
+                focus () {
+                  console.log(456)
                 }
               }
-            }, [
-              h('div', {
-                class: {
-                  member_operate_div: true
-                }
-              }, [
-                h('Button', {
-                  props: {
-                    type: 'primary',
-                    size: 'small'
-                  }
-                }, [
-                  h('span', '更多'),
-                  h('Icon', {
-                    props: {
-                      type: 'arrow-down-b'
-                    },
-                    style: {
-                      marginLeft: '5px'
-                    }
-                  })
-                ])
-              ]),
-              h('DropdownMenu', {
-                slot: 'list'
-              }, [
-                h('DropdownItem', {
-                  props: {
-                    name: 'edit'
-                  }
-                }, [
-                  h('Button', {
-                    props: {
-                      type: 'primary',
-                      size: 'small'
-                    },
-                    style: {
-                      display: 'inline-block',
-                      width: '76px'
-                    },
-                    on: {
-                      click: () => {
-                        this.openEditUserDialog(params.row, params.index)
-                      }
-                    }
-                  }, '编辑')
-                ])
-              ])
-            ])
-          }
-        },
-        {
-          title: '备用列',
-          key: 'address',
-          render: (h, params) => {
-            return h('Select', [
-              h('Option', {
-                props: {
-                  type: 'primary',
-                  size: 'small'
-                },
-                style: {
-                  // marginRight: '5px',
-                  width: '200px'
-                },
-                on: {
-                  click: () => {
-                    alert(1256)
-                  }
-                }
-              }, '下拉内容1')
-            ])
+            })
           }
         },
         {
@@ -164,78 +131,112 @@ export default {
               }, '查看'),
               h('Button', {
                 props: {
-                  type: 'error',
+                  type: 'primary',
                   size: 'small'
                 },
                 on: {
                   click: () => {
-                    this.$Message.warning({
-                      content: '我是提示的内容'
-                      // onClose: () => { alert(123) },
-                      // closable: true,
-                      // render: h => {
-                      //   return h('span', [
-                      //     'This i的释放你的愤怒的公牛s created by ',
-                      //     h('a', 'render'),
-                      //     ' function'
-                      //   ])
-                      // }
-                    })
+                    // 打开组件选择模态框
+                    this.modal_input = true
                     // this.remove(params.index)
+                    // 调用组件
+                    this.checkMainId()
                   }
                 }
-              }, '测试')
+              }, '组件选择')
 
             ])
           }
         }
       ],
       sys_com_data: [
-        {
-          name: 'John Brown',
-          age: 18,
-          address: 'New York No. 1 Lake Park',
-          job: 'Data engineer',
-          interest: 'badminton',
-          birthday: '1991-05-14',
-          book: 'Steve Jobs',
-          movie: 'The Prestige',
-          music: 'I Cry'
-        },
-        {
-          name: 'Jim Green',
-          age: 25,
-          address: 'London No. 1 Lake Park',
-          job: 'Data Scientist',
-          interest: 'volleyball',
-          birthday: '1989-03-18',
-          book: 'My Struggle',
-          movie: 'Roman Holiday',
-          music: 'My Heart Will Go On'
-        },
-        {
-          name: 'Joe Black',
-          age: 30,
-          address: 'Sydney No. 1 Lake Park',
-          job: 'Data Product Manager',
-          interest: 'tennis',
-          birthday: '1992-01-31',
-          book: 'Win',
-          movie: 'Jobs',
-          music: 'Don’t Cry'
-        },
-        {
-          name: 'Jon Snow',
-          age: 26,
-          address: 'Ottawa No. 2 Lake Park',
-          job: 'Data Analyst',
-          interest: 'snooker',
-          birthday: '1988-7-25',
-          book: 'A Dream in Red Mansions',
-          movie: 'A Chinese Ghost Story',
-          music: 'actor'
-        }
-      ]
+        // {
+        //   name: 'John Brown',
+        //   age: 18,
+        //   address: 'New York No. 1 Lake Park',
+        //   job: 'Data engineer',
+        //   interest: 'badminton',
+        //   birthday: '1991-05-14',
+        //   book: 'Steve Jobs',
+        //   movie: 'The Prestige',
+        //   music: 'I Cry'
+        // },
+
+      ],
+
+      // 穿梭框中的原始数据与选中数据
+      transform_origin_data: [],
+      transform_checked_data: []
+
+    }
+  },
+  created () {
+    this.initTable()
+  },
+  methods: {
+    // 初始化表格数据***根据用户名和用户角色查询用户所拥有的系统
+    async  initTable () {
+      let paramsInitTable = {username: this.name, userType: this.password}
+      const {data} = await axios.get('http://localhost:3000/findSystemByuserName', {params: paramsInitTable})
+      console.log(data)
+      this.sys_com_data = data
+    },
+
+    // 让用户给系统选择服务主键
+    async checkMainId () {
+      const {data} = await axios.get('http://localhost:3000/findServiceComponentList')
+      console.log(data)
+      // 由于穿梭狂特性，需要固定的key为键，字符串数字为name
+      data.map((item, index) => {
+        item.key = (index + '1').toString()
+      })
+      this.transform_origin_data = data
+    },
+
+    // 弹出层的穿梭框
+    handleChange3 (newTargetKeys) {
+      // console.log('变化时的数据', newTargetKeys)
+      // 将key的值与左侧的数组一一对应起来，查找需要的值，并添加到右侧
+      // newTargetKeys.some((item, index) => {
+      //   console.log(item, index)
+
+      //   // this.transform_checked_data.push({
+      //   //   name: this.transform_origin_data[index].name,
+      //   //   securityNode: this.transform_origin_data[index].securityNode,
+      //   //   servicePlatformId: this.transform_origin_data[index].servicePlatformId
+      //   // })
+
+      //   console.log(item, '变化时的数据', this.transform_origin_data)
+      // })
+      this.transform_origin_data = newTargetKeys
+    },
+    render_box (item) {
+      // console.log(item)
+      return item.key + ' - ' + item.id + ' - ' + item.name + ' - ' + item.securityNode + ' - ' + item.servicePlatformId
+    },
+    reloadMockData () {
+      this.checkMainId()
+    },
+    // 穿梭框的搜索空能
+    // filterMethod (data, query) {
+    //   console.log(data, query)
+    // },
+
+    // 表格中input中的弹出层部分
+    ok_modal_input () {
+      this.$Message.info('Clicked ok_input')
+      console.log('我是确定按钮之后获取选中的内容', this.transform_checked_data)
+    },
+    cancel_modal_input () {
+      this.$Message.info('Clicked cancel_input')
+    },
+
+    clickExpandHandle (row, state) {
+      if (state === true) {
+        console.log('在这里发请求')
+      } else {
+        console.log('请求失败')
+      }
     }
   }
 }
@@ -245,5 +246,11 @@ export default {
 .sys_com_table{
   width: 900px;
   margin: 10px auto;
+}
+
+/* // 弹出层样式 */
+.compontent_modal .ivu-modal{
+  width: 1000px !important;
+  top:50px;
 }
 </style>

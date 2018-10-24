@@ -42,7 +42,7 @@
                 <Submenu name="1">
                   <template slot="title">
                     <Icon type="ios-navigate"></Icon>
-                    Item 1
+                    宇宣
                   </template>
                   <menu-item name="11" to="/yuxuan/item1/option1">Option 1</menu-item>
                   <menu-item name="12" to="/yuxuan/item1/option2">Option 2</menu-item>
@@ -53,17 +53,18 @@
                 <Submenu name="2">
                   <template slot="title">
                     <Icon type="ios-keypad"></Icon>
-                    Item 2
+                    文件上传
                   </template>
-                  <menu-item name="2-1">Option 1</menu-item>
-                  <menu-item name="2-2">Option 2</menu-item>
+                  <menu-item name="2-1" to="/upload_test">upload_test</menu-item>
+                  <menu-item name="2-2" to="/upload">upload 独立版</menu-item>
+                  <menu-item name="2-3" to='/uploadiview'>uploadiview版</menu-item>
                 </Submenu>
                 <Submenu name="3">
                   <template slot="title">
                     <Icon type="ios-analytics"></Icon>
-                    Item 3
+                    刘娜
                   </template>
-                  <menu-item name="3-1">Option 1</menu-item>
+                  <menu-item name="3-1" to='/upload_test'>选择框</menu-item>
                   <menu-item name="3-2">Option 2</menu-item>
                 </Submenu>
               </Menu>
@@ -90,14 +91,14 @@ export default {
       itemList: [
         {name: '1', href: '/export_excel', icon: 'ios-navigate', title: 'export_excel'},
         {name: '2', href: '/upload_excel', icon: 'ios-keypad', title: 'upload_excel'},
-        {name: '3', href: '/yuxuan/item3', icon: 'ios-analytics', title: 'Item 3'},
+        {name: '3', href: '/upload_test', icon: 'ios-analytics', title: 'upload_test'},
         {name: '4', href: '/yuxuan/item4', icon: 'ios-paper', title: 'Item 4'}
       ],
       menuitemList: [
         {name: '11', href: '/yuxuan/item1/option1', icon: 'ios-navigate', title: 'Item 1'},
         {name: '12', href: '/yuxuan/item2/option2', icon: 'ios-keypad', title: 'Item 2'},
-        {name: '13', href: '/yuxuan/item3/option3', icon: 'ios-analytics', title: 'Item 3'}
-        // {name: '14', href: '/yuxuan/item4/option4', icon: 'ios-paper', title: 'Item 4'}
+        {name: '13', href: '/yuxuan/item3/option3', icon: 'ios-analytics', title: 'Item 3'},
+        {name: '14', href: '/yuxuan/item4/option4', icon: 'ios-paper', title: 'Item 4'}
       ],
       mentlist: [
         {

@@ -42,6 +42,26 @@ module.exports = () => {
         law_name: '@ctitle(5)_境内法人CN024(村镇银行)',
         law_zone: 'CN'
       }
+    ],
+    // 调用别人的接口（根据用户名和用户角色查询所有用户所拥有的系统）
+    'findSystemByuserName|10': [
+      {
+        'id|+1': 1,
+        appId: 'AL04@natural(100, 999)',
+        compname: 'N-ISMM@natural(10, 99)',
+        cname: '管理机构@natural(10, 99)',
+        ename: 'manage@natural(10, 99)'
+      }
+    ],
+
+    // 让用户给系统选择服务主键
+    'findServiceComponentList|10': [
+      {
+        'id|+1': 1 + 'OLD_COST',
+        name: 'OLD_COST@natural(10, 99)',
+        securityNode: 'Y15100@natural(10, 99)',
+        servicePlatformId: 'COST@natural(10, 99)'
+      }
     ]
   })
   // 返回的data会作为json-server的数据

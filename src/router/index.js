@@ -6,6 +6,10 @@ import Login from '@/views/Login'
 import Test from '@/views/Test'
 import Yuxuan from '@/views/Yuxuan'
 import SysCom from '@/components/liuna/sys_com.vue'
+import UpLoad from '@/views/upload/FileUpload.vue'
+import UpLoadIview from '@/views/upload/iview_upload.vue'
+import UpLoadTest from '@/views/upload/upload_test.vue'
+import SelectTest from '@/components/liuna/select_test.vue'
 import Layout from '@/views/Layout'
 import Item1 from '@/views/Item1'
 import Item2 from '@/views/Item2'
@@ -31,6 +35,26 @@ export default new Router({
       path: '/sys_com',
       name: 'sys_com',
       component: SysCom
+    },
+    {
+      path: '/uploadiview',
+      name: 'UpLoadIview',
+      component: UpLoadIview
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: UpLoad
+    },
+    {
+      path: '/upload_test',
+      name: 'UpLoadTest',
+      component: UpLoadTest
+    },
+    {
+      path: '/select_test',
+      name: 'SelectTest',
+      component: SelectTest
     },
     {
       path: '/',
